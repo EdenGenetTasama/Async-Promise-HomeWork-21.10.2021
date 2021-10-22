@@ -83,16 +83,16 @@ async function callsPromiseFunction() {
   }
 }
 
-// callsPromiseFunction()
-//   .then((res) => {
-//     innerDiv.innerHTML += res;
-//   })
-//   .catch((rej) => {
-//     innerDiv.innerHTML += rej;
-//   })
-//   .finally(() => {
-//     stopLoadingImg();
-//   });
+callsPromiseFunction()
+  .then((res) => {
+    innerDiv.innerHTML += res;
+  })
+  .catch((rej) => {
+    innerDiv.innerHTML += rej;
+  })
+  .finally(() => {
+    stopLoadingImg();
+  });
 
 //   צרו מערך של 3 כלבים, לכל כלב יש שם, גיל וסוג.
 // צרו פונקציה שמחזירה promise, הפונקציה מקבלת מערך של כלבים, הפונקציה מחזירה את הכלב הזקן ביותר.
@@ -152,16 +152,16 @@ async function printToDivFun() {
   }
 }
 
-// printToDivFun()
-//   .then((res) => {
-//     innerDivTwo.innerHTML += res;
-//   })
-//   .catch((rej) => {
-//     innerDivTwo.innerHTML += rej;
-//   })
-//   .finally(() => {
-//     stopImgLoading();
-//   });
+printToDivFun()
+  .then((res) => {
+    innerDivTwo.innerHTML += res;
+  })
+  .catch((rej) => {
+    innerDivTwo.innerHTML += rej;
+  })
+  .finally(() => {
+    stopImgLoading();
+  });
 
 //   1.	צרו MAP של 7 ילדים, כאשר המפתח הוא השם והערך הוא הגיל.
 // הוסיפו ילד.
