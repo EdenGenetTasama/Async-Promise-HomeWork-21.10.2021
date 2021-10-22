@@ -113,25 +113,25 @@ class Dogs {
 }
 
 let dogOne = new Dogs("dogOne", 1, "hotdog");
-let dogTwo = new Dogs("dogTwo", 2, "pitball");
+let dogTwo = new Dogs("dogTwo", 80, "pitball");
 let dogThree = new Dogs("dogThree", 7, "rotwailer");
 
 let arrayOfDoges = [dogOne, dogTwo, dogThree];
 
-// console.log(arrayOfDoges[0].age);
-
 function getOlderDogAge(array) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
+      if (array == "") {
+        reject("empty");
+      }
+      let maxAge = array[0].age;
       for (const element of array) {
-        let maxAge = array[0].age;
         if (element.age > maxAge) {
           maxAge = element.age;
-          resolve(maxAge);
         }
       }
-      reject("non");
-    }, 5000);
+      resolve(maxAge);
+    }, 2000);
   });
 }
 
@@ -152,16 +152,16 @@ async function printToDivFun() {
   }
 }
 
-printToDivFun()
-  .then((res) => {
-    innerDivTwo.innerHTML += res;
-  })
-  .catch((rej) => {
-    innerDivTwo.innerHTML += rej;
-  })
-  .finally(() => {
-    stopImgLoading();
-  });
+// printToDivFun()
+//   .then((res) => {
+//     innerDivTwo.innerHTML += res;
+//   })
+//   .catch((rej) => {
+//     innerDivTwo.innerHTML += rej;
+//   })
+//   .finally(() => {
+//     stopImgLoading();
+//   });
 
 //   1.	צרו MAP של 7 ילדים, כאשר המפתח הוא השם והערך הוא הגיל.
 // הוסיפו ילד.
@@ -171,17 +171,84 @@ printToDivFun()
 // הציגו בלוג את הילדים שהשם שלהם ארוך מ4 תווים.
 
 let childrenMap = new Map();
-childrenMap.set("childrenOne",7);
-childrenMap.set("childrenTwo",6);
-childrenMap.set("childrenThree",5);
-childrenMap.set("childrenFour",4);
-childrenMap.set("childrenFiv",3);
-childrenMap.set("childrensix",2);
-childrenMap.set("childrenSeven",1);
+childrenMap.set("One", 7);
+childrenMap.set("Two", 6);
+childrenMap.set("ree", 5);
+childrenMap.set("childrenFour", 4);
+childrenMap.set("childrenFiv", 3);
+childrenMap.set("childrensix", 2);
+childrenMap.set("childrenSeven", 1);
 
+//!הוסיפו ילד
 
-for (const iterator of object) {
-    
+childrenMap.set("childernEight", 0);
+
+//!הציגו בלוג את הגיל שבחרתן/ם לו.
+
+// console.log(childrenMap.get("childernEight"));
+// console.log(childrenMap.values());
+//!הציגו בלוג רק את השמות.
+
+// console.log(childrenMap.keys());
+
+//!הציגו בלוג את הילדים שהשם שלהם ארוך מ4 תווים.
+
+// for (const item of childrenMap.keys()) {
+//   if (item.length > 4) console.log(item);
+// }
+
+//!.צרו MAP של 4 דירות, כאשר המפתח הוא מספר הדירה והערך הוא המספר הנפשות בדירה.
+
+let apartmentMap = new Map();
+apartmentMap.set("apartmentOne", 8);
+apartmentMap.set("apartmatTwo", 500);
+apartmentMap.set("apartmentThree", 600);
+apartmentMap.set("apartmantFour", 200);
+// console.log(apartmentMap);
+
+let maxLivesIn = 0;
+
+function promiseApartment(map) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (map == "") {
+        reject("Empty");
+      }
+      for (const item of map.values()) {
+        if (item > maxLivesIn) {
+          maxLivesIn = item;
+        }
+      }
+      resolve(maxLivesIn);
+    }, 3000);
+  });
 }
+
+function waitingLading() {
+    innerDivThree.innerHTML = `<img src="./funny loading gif.gif" id="funnyGif">`
+}
+
+function stopImgLoadingFunny() {
+    funnyGif.style.display = "none";
+  }
+  
+async function returnAnswer() {
+  try {
+    waitingLading()
+    return await promiseApartment(apartmentMap);
+  } catch (error) {
+    return error;
+  }
+}
+
+returnAnswer()
+  .then((res) => {
+    innerDivThree.innerHTML += `The Max tenant is : ${res}`;
+  })
+  .catch((rej) => {
+    innerDivThree.innerHTML += `${rej}`;
+  })
+  .finally(() => {stopImgLoadingFunny()});
+
 
 
