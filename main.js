@@ -105,39 +105,46 @@ class Dogs {
   name;
   age;
   type;
-  constructor(name, age, type) {
-    this.name = name;
-    this.age = age;
-    this.type = type;
+  constructor(_name, _age, _type) {
+    this.name = _name;
+    this.age = _age;
+    this.type = _type;
   }
 }
 
 let dogOne = new Dogs("dogOne", 1, "hotdog");
 let dogTwo = new Dogs("dogTwo", 80, "pitball");
-let dogThree = new Dogs("dogThree", 7, "rotwailer");
+let dogThree = new Dogs("dogThree", 780, "rotwailer");
+
 
 let arrayOfDoges = [dogOne, dogTwo, dogThree];
 
 function getOlderDogAge(array) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (array == "") {
+      if (!array) {
         reject("empty");
       }
       let maxAge = array[0].age;
       for (const element of array) {
         if (element.age > maxAge) {
           maxAge = element.age;
+          
         }
       }
       resolve(maxAge);
-    }, 2000);
+    }, 5000);
   });
 }
 
 function dogImgLoading() {
   innerDivTwo.innerHTML = `<img src="./dog loading.gif" id="dogImg">`;
 }
+
+function stopLoadingImgTwo() {
+  dogImg.style.display = "none";
+}
+
 
 async function printToDivFun() {
   try {
@@ -156,7 +163,7 @@ async function printToDivFun() {
 //     innerDivTwo.innerHTML += rej;
 //   })
 //   .finally(() => {
-//     stopLoadingImg();
+//     stopLoadingImgTwo();
 //   });
 
 //   1.	צרו MAP של 7 ילדים, כאשר המפתח הוא השם והערך הוא הגיל.
@@ -204,25 +211,45 @@ apartmentMap.set("apartmantFour", 200);
 
 let maxLivesIn = 0;
 
-function promiseApartment(map) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (map == "") {
-        reject("Empty");
+// function promiseApartment(map) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       if (!map) {
+//         reject("Empty");
+//       }
+//       for (const item of map.values()) {
+//         if (item > maxLivesIn) {
+//           maxLivesIn = item;
+//         }
+//       }
+//       resolve(maxLivesIn);
+//     }, 3000);
+//   });
+// }
+
+function promiseApartment(mapParam){
+  let maxValue= 0;
+  let maxKey = 0;
+  return new Promise((resolve ,reject)=>{
+    for (let numberOfAprt of mapParam.keys()) {
+      if (mapParam.get(numberOfAprt) > maxValue) {
+        maxKey= numberOfAprt;
+        maxValue = mapParam.get(numberOfAprt);
       }
-      for (const item of map.values()) {
-        if (item > maxLivesIn) {
-          maxLivesIn = item;
-        }
-      }
-      resolve(maxLivesIn);
-    }, 3000);
-  });
+    }
+    maxKey ? resolve(`${maxKey}, and max number of intenant is ${maxValue}`): reject("NOT")
+  })
 }
+
 
 function waitingLading() {
   innerDivThree.innerHTML = `<img src="./funny loading gif.gif" id="funnyGif">`;
 }
+
+function stopLoadingImg() {
+  funnyGif.style.display = "none";
+}
+
 
 async function returnAnswer() {
   try {
@@ -233,16 +260,16 @@ async function returnAnswer() {
   }
 }
 
-// returnAnswer()
-//   .then((res) => {
-//     innerDivThree.innerHTML += `The Max tenant is : ${res}`;
-//   })
-//   .catch((rej) => {
-//     innerDivThree.innerHTML += `${rej}`;
-//   })
-//   .finally(() => {
-//     stopLoadingImg();
-//   });
+returnAnswer()
+  .then((res) => {
+    innerDivThree.innerHTML += `The Max tenant is : ${res}`;
+  })
+  .catch((rej) => {
+    innerDivThree.innerHTML += `${rej}`;
+  })
+  .finally(() => {
+    stopLoadingImg();
+  });
 
 
 for (const iterator of apartmentMap) {
