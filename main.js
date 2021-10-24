@@ -83,16 +83,16 @@ async function callsPromiseFunction() {
   }
 }
 
-callsPromiseFunction()
-  .then((res) => {
-    innerDiv.innerHTML += res;
-  })
-  .catch((rej) => {
-    innerDiv.innerHTML += rej;
-  })
-  .finally(() => {
-    stopLoadingImg();
-  });
+// callsPromiseFunction()
+//   .then((res) => {
+//     innerDiv.innerHTML += res;
+//   })
+//   .catch((rej) => {
+//     innerDiv.innerHTML += rej;
+//   })
+//   .finally(() => {
+//     stopLoadingImg();
+//   });
 
 //   צרו מערך של 3 כלבים, לכל כלב יש שם, גיל וסוג.
 // צרו פונקציה שמחזירה promise, הפונקציה מקבלת מערך של כלבים, הפונקציה מחזירה את הכלב הזקן ביותר.
@@ -139,10 +139,6 @@ function dogImgLoading() {
   innerDivTwo.innerHTML = `<img src="./dog loading.gif" id="dogImg">`;
 }
 
-function stopImgLoading() {
-  dogImg.style.display = "none";
-}
-
 async function printToDivFun() {
   try {
     dogImgLoading();
@@ -152,16 +148,16 @@ async function printToDivFun() {
   }
 }
 
-printToDivFun()
-  .then((res) => {
-    innerDivTwo.innerHTML += res;
-  })
-  .catch((rej) => {
-    innerDivTwo.innerHTML += rej;
-  })
-  .finally(() => {
-    stopImgLoading();
-  });
+// printToDivFun()
+//   .then((res) => {
+//     innerDivTwo.innerHTML += res;
+//   })
+//   .catch((rej) => {
+//     innerDivTwo.innerHTML += rej;
+//   })
+//   .finally(() => {
+//     stopLoadingImg();
+//   });
 
 //   1.	צרו MAP של 7 ילדים, כאשר המפתח הוא השם והערך הוא הגיל.
 // הוסיפו ילד.
@@ -225,30 +221,31 @@ function promiseApartment(map) {
 }
 
 function waitingLading() {
-    innerDivThree.innerHTML = `<img src="./funny loading gif.gif" id="funnyGif">`
+  innerDivThree.innerHTML = `<img src="./funny loading gif.gif" id="funnyGif">`;
 }
 
-function stopImgLoadingFunny() {
-    funnyGif.style.display = "none";
-  }
-  
 async function returnAnswer() {
   try {
-    waitingLading()
+    waitingLading();
     return await promiseApartment(apartmentMap);
   } catch (error) {
     return error;
   }
 }
 
-returnAnswer()
-  .then((res) => {
-    innerDivThree.innerHTML += `The Max tenant is : ${res}`;
-  })
-  .catch((rej) => {
-    innerDivThree.innerHTML += `${rej}`;
-  })
-  .finally(() => {stopImgLoadingFunny()});
+// returnAnswer()
+//   .then((res) => {
+//     innerDivThree.innerHTML += `The Max tenant is : ${res}`;
+//   })
+//   .catch((rej) => {
+//     innerDivThree.innerHTML += `${rej}`;
+//   })
+//   .finally(() => {
+//     stopLoadingImg();
+//   });
 
 
-
+for (const iterator of apartmentMap) {
+    firstTRLine.innerHTML += `<th> ${iterator[0]} </th> `
+    secondTRLine.innerHTML +=`<td> ${iterator[1]} </td>`
+}
